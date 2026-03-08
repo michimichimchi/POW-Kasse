@@ -19,13 +19,17 @@ def create_db():
                     FOREIGN KEY (purpose_id) REFERENCES transaction_purpose(id)
                     ) """)
         for purpose in purposes:
-            cur.execute(f"INSERT OR IGNORE INTO transaction_purpose (name) VALUES '{purpose}'")
+            cur.execute(f"INSERT OR IGNORE INTO transaction_purpose (name) VALUES ('{purpose}');")
 
 def new_transaction():
     with sqlite3.connect(DB) as con:
         cur = con.cursor()
         date = input("Datum (DD.MM.YYYY): ")
-        amount = float(input("Betrag: "))
+        amount = float(input("Betrag: ").replace(",", "."))
+        pur = int(input("purpose: "))
+        cur.execute(f"INSERT INTO transactions (date, amount, purpose_id) VALUES ('{date}', {amount}, {pur});")
+
+
 
 def view_transactions():
     pass
@@ -40,3 +44,4 @@ if __name__ == "__main__":
     create_db()
     new_transaction()
     view_transactions()
+    view_balance()
