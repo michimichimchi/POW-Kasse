@@ -40,8 +40,7 @@ def view_balance():
         res = cur.execute("SELECT SUM(amount) FROM transactions;")
         print(res.fetchone())
 
-if __name__ == "__main__":
-    create_db()
-    new_transaction()
-    view_transactions()
-    view_balance()
+""" create_db()
+new_transaction()
+view_transactions()
+view_balance() """
