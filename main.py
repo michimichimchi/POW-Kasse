@@ -2,16 +2,17 @@ import tkinter as tk
 import backend as be
 import pygubu
 
-root = tk.Tk()
+class BankingApp:
+    def __init__(self):
+        self.builder = pygubu.Builder()
+        self.builder.add_from_file('gui.ui')
+        self.mainwindow = self.builder.get_object('tk1')
 
-root.title("POW Kasse")
+        balance = be.view_balance()
 
-root.geometry("1000x700")
+        self.lbl = self.builder.get_object('lbl_balance')
+        self.lbl.config(text=f"aktueller Kassenstand: {balance} €")
 
-label = tk.Label(root, text = "testestest")
-label.place(x = 110, y= 40)
-
-view_balance = tk.Button(root, text = "Kontostand ansehen", command=be.view_balance)
-view_balance.place(x=110, y= 80)
-
-root.mainloop()
+if __name__ == "__main__":
+    app = BankingApp()
+    app.mainwindow.mainloop()

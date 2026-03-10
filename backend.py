@@ -16,6 +16,7 @@ def create_db():
                     date TEXT,
                     amount REAL,
                     purpose_id INTEGER,
+                    comment TEXT,
                     FOREIGN KEY (purpose_id) REFERENCES transaction_purpose(id)
                     ) """)
         for purpose in purposes:
@@ -29,8 +30,6 @@ def new_transaction():
         pur = int(input("purpose: "))
         cur.execute(f"INSERT INTO transactions (date, amount, purpose_id) VALUES ('{date}', {amount}, {pur});")
 
-
-
 def view_transactions():
     pass
 
@@ -38,7 +37,7 @@ def view_balance():
     with sqlite3.connect(DB) as con:
         cur = con.cursor()
         res = cur.execute("SELECT SUM(amount) FROM transactions;")
-        print(res.fetchone())
+        return res.fetchone()[0]
 
 """ create_db()
 new_transaction()
