@@ -6,32 +6,66 @@
     <resources />
   </project>
   <object class="tk.Tk" id="tk1">
-    <property name="height">200</property>
-    <property name="width">200</property>
+    <property name="geometry">1024x768</property>
+    <property name="height">700</property>
+    <property name="width">1000</property>
     <child>
       <object class="tk.Message" id="message1">
-        <property name="text" translatable="yes">test
-</property>
+        <property name="font">{test} 20 {bold}</property>
+        <property name="text" translatable="yes">POW Kasse:</property>
+        <property name="width">200</property>
         <layout manager="pack">
-          <property name="side">top</property>
-        </layout>
-      </object>
-    </child>
-    <child>
-      <object class="ttk.Button" id="button1">
-        <property name="text" translatable="yes">press me</property>
-        <bind sequence="&lt;ButtonPress&gt;" handler="callback" add="" />
-        <layout manager="pack">
-          <property name="side">top</property>
+          <property name="anchor">n</property>
+          <property name="expand">false</property>
+          <property name="side">left</property>
         </layout>
       </object>
     </child>
     <child>
       <object class="ttk.Label" id="lbl_balance" named="True">
+        <property name="font">{test} 16 {}</property>
         <property name="text" translatable="yes">label1</property>
         <layout manager="pack">
+          <property name="anchor">n</property>
+          <property name="expand">true</property>
+          <property name="padx">50</property>
+          <property name="side">right</property>
+        </layout>
+      </object>
+    </child>
+    <child>
+      <object class="ttk.Frame" id="frame1">
+        <property name="height">400</property>
+        <property name="width">200</property>
+        <layout manager="pack">
+          <property name="anchor">w</property>
+          <property name="expand">true</property>
           <property name="side">top</property>
         </layout>
+        <child>
+          <object class="ttk.Button" id="button5">
+            <property name="text" translatable="yes">Transaktionen ansehen</property>
+            <property name="width">20</property>
+            <layout manager="pack">
+              <property name="expand">true</property>
+              <property name="fill">both</property>
+              <property name="pady">15</property>
+              <property name="side">top</property>
+            </layout>
+          </object>
+        </child>
+        <child>
+          <object class="ttk.Button" id="button6">
+            <property name="text" translatable="yes">neue Transaktion</property>
+            <property name="width">20</property>
+            <layout manager="pack">
+              <property name="expand">true</property>
+              <property name="fill">both</property>
+              <property name="pady">15</property>
+              <property name="side">top</property>
+            </layout>
+          </object>
+        </child>
       </object>
     </child>
   </object>
