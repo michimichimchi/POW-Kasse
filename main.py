@@ -6,7 +6,7 @@ class BankingApp:
     def __init__(self):
         self.builder = pygubu.Builder()
         self.builder.add_from_file('gui.ui')
-        self.mainwindow = self.builder.get_object('tk1')
+        self.mainwindow = self.builder.get_object('root')
 
         balance = be.view_balance()
 
