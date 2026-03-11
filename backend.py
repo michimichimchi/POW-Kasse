@@ -3,7 +3,7 @@ import sqlite3
 DB = "POW_Kasse.db"
 
 def create_db():
-    purposes = ["Noten", "Essen", "Trinken", "Geschenke", "Spenden", "Auftritt", "Sonstiges"]
+    purposes = [("Noten",), ("Essen",), ("Trinken",), ("Geschenke",), ("Spenden",), ("Auftritt",), ("Sonstiges",)]
 
     with sqlite3.connect(DB) as con:
         cur = con.cursor()
@@ -26,8 +26,9 @@ def new_transaction():
         cur = con.cursor()
         date = input("Datum (DD.MM.YYYY): ")
         amount = float(input("Betrag: ").replace(",", "."))
-        pur = int(input("purpose: "))
-        cur.execute(f"INSERT INTO transactions (date, amount, purpose_id) VALUES ('{date}', {amount}, {pur});")
+        pur = int(input("Zweck: "))
+        comment = input("Kommentar: ")
+        cur.execute(f"INSERT INTO transactions (date, amount, purpose_id, comment) VALUES ('{date}', {amount}, {pur}, '{comment}');")
 
 def view_transactions():
     with sqlite3.connect(DB) as con:
