@@ -19,8 +19,7 @@ def create_db():
                     comment TEXT,
                     FOREIGN KEY (purpose_id) REFERENCES transaction_purpose(id)
                     ) """)
-        for purpose in purposes:
-            cur.execute(f"INSERT OR IGNORE INTO transaction_purpose (name) VALUES ('{purpose}');")
+        cur.executemany("INSERT OR IGNORE INTO transaction_purpose (name) VALUES (?);", purposes)
 
 def new_transaction():
     with sqlite3.connect(DB) as con:
@@ -31,7 +30,11 @@ def new_transaction():
         cur.execute(f"INSERT INTO transactions (date, amount, purpose_id) VALUES ('{date}', {amount}, {pur});")
 
 def view_transactions():
-    pass
+    with sqlite3.connect(DB) as con:
+        cur = con.cursor()
+        res = cur.execute("""SELECT t.id, t.date as Datum, t.amount as Betrag, p.name as Zweck, t.comment as Kommentar FROM transactions t
+                          LEFT JOIN transaction_purpose p on p.id=t.purpose_id;""")
+        return res.fetchall()
 
 def view_balance():
     with sqlite3.connect(DB) as con:
