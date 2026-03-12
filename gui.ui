@@ -85,6 +85,52 @@
               <property name="fill">both</property>
               <property name="side">top</property>
             </layout>
+            <child>
+              <object class="ttk.Treeview" id="tree_transactions" named="True">
+                <layout manager="pack">
+                  <property name="expand">true</property>
+                  <property name="fill">both</property>
+                  <property name="side">top</property>
+                </layout>
+              </object>
+            </child>
+            <child>
+              <object class="ttk.Frame" id="frame3">
+                <property name="height">70</property>
+                <property name="width">200</property>
+                <layout manager="pack">
+                  <property name="expand">false</property>
+                  <property name="fill">x</property>
+                  <property name="side">top</property>
+                </layout>
+                <containerlayout manager="pack">
+                  <property name="propagate">false</property>
+                </containerlayout>
+                <child>
+                  <object class="ttk.Button" id="button1">
+                    <property name="command" type="command" cbtype="simple">prev_page</property>
+                    <property name="default">normal</property>
+                    <property name="text" translatable="yes">&lt;---------</property>
+                    <layout manager="pack">
+                      <property name="expand">true</property>
+                      <property name="fill">both</property>
+                      <property name="side">left</property>
+                    </layout>
+                  </object>
+                </child>
+                <child>
+                  <object class="ttk.Button" id="button2">
+                    <property name="command" type="command" cbtype="simple">next_page</property>
+                    <property name="text" translatable="yes">--------&gt;</property>
+                    <layout manager="pack">
+                      <property name="expand">true</property>
+                      <property name="fill">both</property>
+                      <property name="side">right</property>
+                    </layout>
+                  </object>
+                </child>
+              </object>
+            </child>
           </object>
         </child>
       </object>
