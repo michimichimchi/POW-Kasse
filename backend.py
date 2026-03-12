@@ -30,11 +30,13 @@ def new_transaction():
         comment = input("Kommentar: ")
         cur.execute(f"INSERT INTO transactions (date, amount, purpose_id, comment) VALUES ('{date}', {amount}, {pur}, '{comment}');")
 
-def view_transactions():
+def view_transactions(offset=0, limit=10):
     with sqlite3.connect(DB) as con:
         cur = con.cursor()
         res = cur.execute("""SELECT t.id, t.date as Datum, t.amount as Betrag, p.name as Zweck, t.comment as Kommentar FROM transactions t
-                          LEFT JOIN transaction_purpose p on p.id=t.purpose_id;""")
+                          LEFT JOIN transaction_purpose p on p.id=t.purpose_id
+                          ORDER BY t.id DESC
+                          LIMIT ? OFFSET ?;""", (limit, offset))
         return res.fetchall()
 
 def view_balance():
